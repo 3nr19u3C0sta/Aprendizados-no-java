@@ -1,0 +1,64 @@
+package Pizzaria;
+import java.util.ArrayList;
+import java.util.HashMap;
+public class Pizza {
+	ArrayList<String> ingredientesUsados = new ArrayList<String>();
+	int ingredienteTotal = 0;
+	void adicionaIngrediente(String a) {
+		ingredientesUsados.add(a);
+		contabilizaIngrediente();
+	}
+	int getPreco() {
+		int preco;
+		if(ingredientesUsados.size()<=2) {
+			preco=15;
+		}else if(ingredientesUsados.size()> 2 && ingredientesUsados.size()<=5) {
+			preco=20;
+		}else {
+			preco=23;
+		}
+		return preco;
+	}
+	int contabilizaIngrediente() {
+		return ingredienteTotal++;
+	}
+}
+--------------------------------------------------------------------
+package Pizzaria;
+
+public class CarrinhoDeCompras {
+	static int valortotal= 0;
+	
+	int valorTotal(int preco) {
+		
+		return valortotal+=preco;		
+	}
+}
+-------------------------------------------------------------------
+package Pizzaria;
+
+public class Teste {
+
+	public static void main(String[] args) {
+		Pizza marguerita = new Pizza();
+		Pizza calabresa = new Pizza();
+		Pizza quatroQueijos = new Pizza();	
+		CarrinhoDeCompras total = new CarrinhoDeCompras();
+		marguerita.adicionaIngrediente("queijo");
+		marguerita.adicionaIngrediente("tomate");
+		calabresa.adicionaIngrediente("calabresa");
+		quatroQueijos.adicionaIngrediente("mussarela");
+		quatroQueijos.adicionaIngrediente("coalho");
+		quatroQueijos.adicionaIngrediente("gorgonzola");
+		marguerita.getPreco();
+		calabresa.getPreco();
+		quatroQueijos.getPreco();
+		total.valorTotal(marguerita.getPreco());
+		total.valorTotal(calabresa.getPreco());
+		total.valorTotal(quatroQueijos.getPreco());		
+		System.out.println("ingredientes da marguerita:"+marguerita.ingredientesUsados);
+		System.out.println("ingredientes da calabresa:"+calabresa.ingredientesUsados);
+		System.out.println("ingredientes da quatroQueijos:"+quatroQueijos.ingredientesUsados);	
+		System.out.println("Valor total:"+total.valortotal);	
+	}
+}
