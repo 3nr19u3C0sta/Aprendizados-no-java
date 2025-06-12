@@ -1,0 +1,66 @@
+package Pizzaria;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
+
+
+class PizzaTest {
+	String x = "false";
+	
+	@Before
+	void testando() {
+		x="@before";
+	}
+	@Test
+	void sprint() {
+		System.out.println(x);
+	}
+	@After
+	void test() {
+		x="true";
+	}
+
+	
+	@Test
+	void sprinta() {
+		System.out.println("Esse imprime primeiro por algum motivo desconhecido");
+		System.out.println(x);
+	}
+
+}
+----------------------------------
+package Pizzaria;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
+
+
+class PizzaTest {
+	String x = "false";
+	
+	@Before
+	void testando() {
+		x="@before";
+	}
+	@Test
+	void sprint() {
+		System.out.println(x);
+	}
+	@After
+	void test() {
+		x="true";
+	}
+	@Test
+	void spint() {
+    System.out.println("Esse imprime normal");
+		System.out.println(x+x);
+	}
+	
+
+}
