@@ -1,0 +1,40 @@
+//Atividade do CodeWars, na qual verifica se a palavra testada é um isograma
+
+public class isogram {
+	public static boolean  isIsogram(String str) {
+		boolean x = true;
+		str = str.toLowerCase();
+		for(int i = 0; i<str.length()-1; i++) {
+    		for(int j = i+1; j < str.length(); j++) {
+    			if(str.charAt(i)==str.charAt(j)) x = false;
+    		}
+    	}
+    	return x;
+    	
+    }	
+    public static void main(String[] args) {
+    	System.out.println(isIsogram("moOse"));
+	}
+}
+
+//Durante o estudo, encontrei como substituir com o replaceAll letras tanto no maiusculo quanto no minusco pondo (?i) como prefixo do termo procurado
+//Apesar de não chegar a utilizar achei interessante
+
+String sentence = "moOse";
+String result = sentence.replaceAll("(?i)o", "a");
+
+//Outra função que me interessou foi o matches()
+
+public class isogram {
+    public static boolean isIsogram(String str) {
+        // ^ início da string
+        // (?!.*(.).*\\1) - negative lookahead para repetição, não entendi muito bem esse mas deixarei salvo por aqui para estudo futuro
+        // [a-zA-Z]+$ - string contém apenas letras
+        // ! inverte o valor do boolean
+        return str.matches("^(?!.*(.).*\\1)[a-zA-Z]+$");
+    }
+    public static void main(String[] args) {
+        System.out.println(!isIsogram("moose"));          
+    }
+}
+
