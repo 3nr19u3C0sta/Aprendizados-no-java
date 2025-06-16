@@ -1,0 +1,19 @@
+//Mais uma atividade do codeWars, no qual recebia uma lista e precisava retornar somente nomes com 4 digitos
+//Eu decidi fazer um nova lista para retornar, mas tinha formas mais faceis pelo que vi, utilizando steam().filter().toList().
+import java.util.List;
+import java.util.ArrayList;
+
+class Kata {
+  public static List<String> friend(List<String> x){
+	  ArrayList <String> y = new ArrayList <String>();
+    for(int i = 0; i< x.size(); i++){
+      if(x.get(i).length() == 4){
+        y.add(x.get(i));
+      }
+    }
+    return y;
+   }
+  public static void main(String[] args) {
+	  System.out.println(Kata.friend(List.of("Ryan", "Kieran", "Jason", "Yous"))); 	  
+  }
+}
