@@ -1,0 +1,149 @@
+//Realizei um codigo que armazena os produtos de um carrinho de mercado e calcula seus preços 
+//O codigo ficou meio feio e esta incompleto ainda, vou revisitar no futuro
+//Criei algumas classes de teste para tentar me acostumar com elas, mas achei meio ruim a forma de com as utilizei, devo aprender mais sobre o JTest 
+
+
+package Produtos;
+
+public class Produto {
+     String nome;
+     String codigo;
+     double preco;
+     
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null ) {
+            return false;
+        }
+        Produto produto = (Produto) obj;
+        return codigo.equals(produto.codigo);
+    }
+
+    @Override
+    public int hashCode() {
+        return codigo.hashCode();
+    }
+}
+----------------------------------------------------------------------------------------------
+package Produtos;
+
+public class ProdutoComTamanho extends Produto{
+	int tamanho;
+	public boolean equals(Object obj) {
+		ProdutoComTamanho objeto = (ProdutoComTamanho) obj;
+		return (this.tamanho == objeto.tamanho)?true:false;
+	}
+	@Override
+	public int hashCode() {
+		
+		return super.hashCode();
+	}
+}
+----------------------------------------------------------------------------------------------
+package Produtos;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class CarrinhoDeCompras {
+	HashMap<String , Integer> carrinho = new HashMap<String , Integer>();
+	void adicionaProduto(String produto, int quantidade) {
+		carrinho.put(produto, quantidade);
+	}
+	void removeProduto(String produto, int quantidade) {
+		carrinho.remove(produto, quantidade);
+	}
+	private double total() {
+		ProdutoComTamanho valorProduto = new ProdutoComTamanho();
+		double valorItem = valorProduto.preco;
+		Produto item= new Produto();
+		
+		double valorTotal=0;
+		for(int i = 0; i < carrinho.size(); i++) {
+			double valoritem = carrinho.get(i);
+			valorTotal+=carrinho.get(i);
+		}
+		return valorTotal;
+	}
+}
+----------------------------------------------------------------------------------------------
+package Produtos;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import Pizzaria.CarrinhoDeCompras;
+
+class TesteProdutos {
+
+	@Test
+	void TesteProduto () {
+		Produto arroz = new Produto();
+		arroz.codigo="123";
+		arroz.nome="arroz";
+		arroz.preco=4;
+		Produto arros = new Produto();
+		arros.codigo="123";
+		arros.nome="arroz";
+		arros.preco=4;
+		System.out.println(arroz.equals(arros));
+		System.out.println(arroz.hashCode());
+
+	}
+	
+
+}
+----------------------------------------------------------------------------------------------
+package Produtos;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class TesteProdutosComTamanho {
+
+	@Test
+	void testeProtudosComTamanhp() {
+		ProdutoComTamanho arrozMeioGrande = new ProdutoComTamanho();
+
+		arrozMeioGrande.tamanho=3;
+		ProdutoComTamanho arrozMuitoGrande = new ProdutoComTamanho();
+
+		arrozMuitoGrande.tamanho=3;
+		System.out.println(arrozMuitoGrande.equals(arrozMeioGrande));
+	}
+
+}
+----------------------------------------------------------------------------------------------
+package Produtos;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class TesteCarrinho {
+
+	@Test
+	void testeCarrinhoDeCompras() {
+		CarrinhoDeCompras arroz = new CarrinhoDeCompras();
+		arroz.adicionaProduto("Arroz", 1);
+		System.out.println(arroz.carrinho);
+	}
+
+}
+----------------------------------------------------------------------------------------------
+package Produtos;
+
+public class Teste {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}
