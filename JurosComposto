@@ -1,0 +1,51 @@
+//Fiz um codigo que calcula o resultado de uma compra parcelada com juros compostos
+//Não cheguei a ter nenhuma dificuldade com esse codigo tirando ajustes para a formula dos juroscompostos funcionarem, tentei usar long varias vezes pois não acho tão bonito usar prinft para limitar os digitos, mas o codigo não estava considerando nada dps do 0.1
+
+package CompraParcelada;
+
+public class Compra {
+	double valordaCompra;
+	public Compra(double valordaCompra) {
+		this.valordaCompra = valordaCompra;
+	}
+	public double total(){
+		return valordaCompra;
+	}
+}
+	-----------------------------------
+package CompraParcelada;
+
+public class CompraParcelada extends Compra {
+	double parcelas;
+	double jurosmensal;
+	public CompraParcelada(double valordaCompra, double parcelas, double jurosmensal) {
+		super(valordaCompra);
+		this.parcelas = parcelas;
+		this.jurosmensal = jurosmensal/100;
+	}
+	@Override
+	public double total() {
+		valordaCompra = valordaCompra*Math.pow((1+jurosmensal),parcelas);
+		return super.total();
+	}
+}
+-----------------------------------
+package CompraParcelada;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class TesteCompra {
+
+	@Test
+	void test() {
+		CompraParcelada cp = new CompraParcelada(100, 2, 100);
+		System.out.println(cp.valordaCompra);
+		System.out.println(cp.parcelas);
+		System.out.println(cp.jurosmensal);
+		System.out.println(cp.total());
+		
+	}
+
+}
