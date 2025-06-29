@@ -1,0 +1,54 @@
+//Esse codigo só serve para praticar interfaces, e polimorfismo, apesar de ter tido algumas confusões por conta da logica nos returns, serviu mais para me relembrar como usar replace, mas deixei essa parte de fora
+
+
+package Autoridade;
+public interface FormatadorNome {
+	String formatarNome(String nome, String sobrenome);
+}
+----------------------------------------------------------
+package Autoridade;
+import org.hamcrest.core.IsNull;
+public class Autoridade implements FormatadorNome{
+	String 	nome, 
+			sobrenome;
+	public Autoridade(String nome) {
+		super();
+		this.nome = nome;
+	}
+	public Autoridade(String nome, String sobrenome) {
+		super();
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+	}
+	public Autoridade(String titulo, String nome, String sobrenome) {
+		super();
+		this.nome = titulo +" "+ nome;
+		this.sobrenome = sobrenome;
+	}
+	@Override
+	public String formatarNome(String nome, String sobrenome) {
+		if(sobrenome!=null) {
+			return nome + " " + sobrenome;
+		}else {
+			return nome;
+		}
+	}
+	public String getTratamento() {
+		return formatarNome(nome, sobrenome);
+	}	
+}
+----------------------------------------------------------
+package Autoridade;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+class Teste {
+	@Test
+	void test() {
+		Autoridade policial = new Autoridade("Majestade","Carlos","Rodrigues");
+		Autoridade calaleiro = new Autoridade("Fernande", "Defante");
+		Autoridade cidadao = new Autoridade("Jeolson");
+		System.out.println(policial.getTratamento());
+		System.out.println(calaleiro.getTratamento());
+		System.out.println(cidadao.getTratamento());
+	}
+}
