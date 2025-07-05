@@ -1,0 +1,47 @@
+//Codigo para reescrever e ler um arquivo de texto do computador
+//Estava fazendo outra atividade que necessitou deste assunto, então esse codigo é só uma experiencia para ver possibilidades
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Manipulador_de_Arquivo  {
+
+	public static void escritor(String path) throws IOException {
+		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+		String linha = "";
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Escreva algo: ");
+		linha = sc.nextLine();
+		buffWrite.append(linha + "\n");
+		linha = sc.nextLine();
+		buffWrite.append(linha + "\n");
+		buffWrite.close();
+		sc.close();
+	}
+	public static void leitor(String path) throws IOException {
+		BufferedReader buffRead = new BufferedReader(new FileReader(path));
+		String linha = "Texto do arquivo:";
+		while (true) {
+			if (linha != null) {
+				System.out.println(linha);
+			} else
+				break;
+			linha = buffRead.readLine();
+		}
+		buffRead.close();
+	}
+}
+----------------------------------------------------------------------
+package Processar;
+import java.io.IOException;
+public class Principal {
+	public static void main(String[] args) throws IOException{
+		String path = "C:\\Users\\enriq\\OneDrive\\Área de Trabalho\\file.txt";
+		Manipulador_de_Arquivo.escritor(path);
+		Manipulador_de_Arquivo.leitor(path);
+	}
+}
