@@ -1,0 +1,11 @@
+//Retira a primeira e ultima letra de uma string
+//Tambem encontrei a função substring para ser utilizado ao inves da subSequence, a unica diferença entre eles é que substring não precisa do segyndo parametro, só o primeiro é obrigatorio
+public class RemoveChars {
+	public static String remove(String str) {
+		return (String) str.subSequence(1, str.length()-1);
+	}
+	public static void main(String[] args) {
+		String tess = "papado";
+		System.out.println(remove(tess));
+	}
+}
